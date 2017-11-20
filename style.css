@@ -1,0 +1,29 @@
+body {
+	background-color: #111;
+}
+
+.box{
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+	background-color: #fff;
+	width: 30%;
+	height: 340px;
+}
+
+.grid{
+	text-align: center;
+	display: grid;
+	margin: 20px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 100px 100px 100px;
+}
+
+.button{
+	font-size: 2em;
+	border: 1px solid black;
+	display: block;
+	line-height: 2em;
+	cursor: pointer;
+	font-family: "Spectral SC", serif;
+}
