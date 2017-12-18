@@ -1,5 +1,5 @@
 body {
-	background-color: #111;
+    background: radial-gradient(square, #111 20%, #222);
 }
 
 .box{
@@ -26,4 +26,38 @@ body {
 	line-height: 2em;
 	cursor: pointer;
 	font-family: "Spectral SC", serif;
+}
+
+.score{
+	width: 200px;
+	height: 100px;
+	background-color: white;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+	text-align: center;
+}
+
+#menu {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #555;
+	overflow: hidden;
+    transition: 0.5s;
+    text-align:center;
+}
+
+.symbol{
+	width: 100px;
+	height: 100px;
+	background-color: #fff;
+	margin-right: auto;
+	margin-left: auto;
+	display: inline-block;
+	font-size: 2em;
+	line-height: 100px;
 }
