@@ -12,6 +12,10 @@ var winsEx = 0;
 //move detector
 var moves = 0;
 
+//turn detector
+
+var playerTurn = true;
+
 var fields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 //cloning clear bord so we can use it once the game is finished
 var divClone;
@@ -29,9 +33,9 @@ function updateScore(){
 }
 
 function topleft(s){
-	if(document.getElementById('tl').innerHTML == ''){
+	if(document.getElementById('tl').innerHTML == '' && playerTurn == true){
 		document.getElementById('tl').innerHTML = sig;
-
+		playerTurn = false;
 		moves++;
 
 		deleteField(0);
@@ -44,10 +48,10 @@ function topleft(s){
 }
 
 function topcenter(s){
-	if(document.getElementById('tc').innerHTML == ''){
+	if(document.getElementById('tc').innerHTML == '' && playerTurn == true){
 		document.getElementById('tc').innerHTML = sig;
 		moves++;
-
+		playerTurn = false;
 
 		deleteField(1);
 		changeFlag();
@@ -58,10 +62,10 @@ function topcenter(s){
 }
 
 function topright(s){
-	if(document.getElementById('tr').innerHTML == ''){
+	if(document.getElementById('tr').innerHTML == '' && playerTurn == true){
 		document.getElementById('tr').innerHTML = sig;
 		moves++;		
-
+		playerTurn = false;
 		deleteField(2);
 		changeFlag();
 		draw();
@@ -71,10 +75,10 @@ function topright(s){
 }
 
 function middleleft(s){
-	if(document.getElementById('ml').innerHTML == ''){
+	if(document.getElementById('ml').innerHTML == '' && playerTurn == true){
 		document.getElementById('ml').innerHTML = sig;
 		moves++;		
-
+		playerTurn = false;
 		deleteField(3);
 		changeFlag();
 		draw();
@@ -86,10 +90,10 @@ function middleleft(s){
 }
 
 function middlecenter(s){
-	if(document.getElementById('mc').innerHTML == ''){
+	if(document.getElementById('mc').innerHTML == '' && playerTurn == true){
 		document.getElementById('mc').innerHTML = sig;
 		moves++;		
-
+		playerTurn = false;
 		deleteField(4);
 		changeFlag();
 		draw();
@@ -100,10 +104,10 @@ function middlecenter(s){
 }
 
 function middleright(s){
-	if(document.getElementById('mr').innerHTML == ''){
+	if(document.getElementById('mr').innerHTML == '' && playerTurn == true){
 		document.getElementById('mr').innerHTML = sig;
 		moves++;		
-
+		playerTurn = false;
 		deleteField(5);
 		changeFlag();
 		draw();
@@ -114,10 +118,10 @@ function middleright(s){
 }
 
 function bottomleft(s){
-	if(document.getElementById('bl').innerHTML == ''){
+	if(document.getElementById('bl').innerHTML == '' && playerTurn == true){
 		document.getElementById('bl').innerHTML = sig;
 		moves++;		
-
+		playerTurn = false;
 		deleteField(6);
 		changeFlag();
 		draw();
@@ -127,10 +131,10 @@ function bottomleft(s){
 }
 
 function bottomcenter(s){
-	if(document.getElementById('bc').innerHTML == ''){
+	if(document.getElementById('bc').innerHTML == '' && playerTurn == true){
 		document.getElementById('bc').innerHTML = sig;
 		moves++;
-
+		playerTurn = false;
 		deleteField(7);
 		changeFlag();
 		draw();
@@ -140,10 +144,10 @@ function bottomcenter(s){
 }
 
 function bottomright(s){
-	if(document.getElementById('br').innerHTML == ''){
+	if(document.getElementById('br').innerHTML == '' && playerTurn == true){
 		document.getElementById('br').innerHTML = sig;
 		moves++; 
-
+		playerTurn = false;
 
 		deleteField(8);
 		changeFlag();
@@ -183,6 +187,10 @@ function changeFlag(){
 var randomNum;
 
 function computerMove(){
+	var delaySec = 1000;
+
+	setTimeout(function(){
+
 	randomNum = fields[Math.floor(Math.random() * fields.length)];
 	console.log(randomNum);
 	if(randomNum == 0){
@@ -249,6 +257,12 @@ function computerMove(){
 		winFun();
 		changeFlag();
 	}
+
+	playerTurn = true;
+
+
+	}, delaySec);
+
 }
 
 //Winning function: a function to verify wheather either of the signs is three in a row. There are 8 possible winning positions so function needs to verify after each move if this is the winning condition.
@@ -391,9 +405,13 @@ function restart(){
 	$("#board").replaceWith(divClone.clone());
 	updateScore();
 	moves = 0;
-	sig = symbolChosen;
 	document.getElementById('nextMove').innerHTML = 'NEXT: ' + sig;
 	fields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+	if(playerTurn == true){
+		playerTurn = false;
+	} else {
+		playerTurn = true;
+	}
 };
 
 function draw(){
